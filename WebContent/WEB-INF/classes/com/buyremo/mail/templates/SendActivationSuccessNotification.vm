@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Activation Success Notification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<!-- Bootstrap --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<style>
+
+#font{
+    color: #3f4652;
+    font-size: 16px;
+    font-family: 'vardana', sans-serif; 
+    line-height: 1.4em;	
+    }
+#header{
+	background-color:#fe980f;
+	text-align:center;
+	color:#fff;
+	font-size:22px;
+	height:40px;
+	line-height:40px;
+	}
+#footer{
+	background-color:#fe980f;
+	text-align:center;
+	color:#fff;
+	font-size:12px;
+	}
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+a{
+color:#fff;
+
+}
+h6{
+margin:30px 0px;
+line-height:20px;
+
+}
+</style>
+</head>
+	<body>
+		<div class="container">
+			<br/> <br/>
+												<!------Header---->
+			<div class="row"> 
+			<img style="-webkit-user-select: none" src="" height="90px" width="300px">
+				<div class="col-md-12" id="header"> 	  
+				BuyRemo
+				</div>
+				
+				
+			</div>	
+												<!------Body---->
+			<div class="row"> 
+			
+				<div style="margin:15px 0px; font-size: 28px;font-family: 'Open Sans',sans-serif;font-weight: 300; text-align:center;">Account Activate Success Notification your BuyRemo account.</div>
+				<div class="col-md-8 col-md-offset-2" id="font"> 
+				<!------new content---->
+				
+				
+					<div class="row"> 
+						 <div class="col-md-12" >
+							Dear $userName ,
+							<br>
+							<br/>
+							 Congratulations! Your Email <b>$userEmail</b>, have successfully activated.
+							<br>
+							<br>You can now share this email Id to your family to add aspirations to your account</br>
+							<br>
+							Please click the below URL to validate your Email
+							<br/>
+							<a href="$activateURL" style="color:red">$activateURL</a>
+							<br>
+							<br/><br/>
+							Thanks & Regards,
+							<br/>							
+							BuyRemo.
+						</div>
+					</div>
+
+					
+					<!------new content---->		
+					
+				</div>
+												<!------Footer---->
+				<div class="col-md-12" id="footer"> 
+			
+					<h6>Connect with us!</h6>
+					
+					<h6><a href="#">Our blog </a>|<a href="#"><img src=""> Facebook</img></a> |<a href="#"><img src=""> Twitter</img></a>| <a href="#">Pinterest</a><br/>
+					Follow us on Facebook.</h6>
+					<br/>
+					<a style="height:40px; width:100px;border:2px solid #fff; align=center;padding:15px;">Buy Remo.</a>
+					<br/>
+					<h6>You are receiving this email because you signed up for BuyRemo.<br/>
+					If you did not make this request, please contact <a href="#"><u>support.</u></a></h6>
+					
+				</div>							
+				
+			</div>
+		</div>
+		
+
+	</body>
+</html>

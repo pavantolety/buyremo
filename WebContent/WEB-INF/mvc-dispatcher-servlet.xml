@@ -1,0 +1,91 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd	
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+	
+	
+	
+	<context:component-scan base-package="com.buyremo.controller,com.buyremo.util,com.buyremo.dao,com.buyremo.cache" />
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/**" location="/" />
+
+	<task:annotation-driven executor="asyncExecutor"/>
+    <task:executor id="asyncExecutor" pool-size="5" />
+		
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/buyremodb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="welcome"/>
+    </bean>
+	
+	
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl"/>
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="rss" value="application/rss+xml" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<!-- JSON View -->
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+				</bean>
+			</list>
+		</property>
+
+		<property name="ignoreAcceptHeader" value="true"> </property>
+
+	</bean>
+
+	<!-- If no extension matched, use JSP view -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="3" />
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="2" />
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.tiles3.TilesView
+			</value>
+		</property>
+	</bean>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="multipartResolver" class="org.gmr.web.multipart.GMultipartResolver">
+      <property name="maxUploadSize" value="3145728" />
+    </bean>
+ 
+ </beans>

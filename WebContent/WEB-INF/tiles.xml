@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="user.definition"
+        template="/WEB-INF/pages/layouts/layout.jsp">
+        <put-attribute name="pageStyles" value="/WEB-INF/pages/layouts/styles.jsp" />
+        <put-attribute name="header" value="/WEB-INF/pages/layouts/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/pages/layouts/footer.jsp" />        
+    </definition>
+    <definition name="user.notifications.definition"
+        template="/WEB-INF/pages/layouts/layout.jsp">
+        <put-attribute name="pageStyles" value="/WEB-INF/pages/layouts/styles.jsp" />
+        <put-attribute name="header" value="/WEB-INF/pages/layouts/header.jsp" />
+    </definition>
+</tiles-definitions>
