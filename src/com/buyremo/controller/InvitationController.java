@@ -88,7 +88,10 @@ public class InvitationController {
 								ex.printStackTrace();
 							}
 							
-						}		
+						}
+						modelMap.put("status", "success");
+						modelMap.put("signUpMessage","Account has been Created.");
+						return PageView.SIGNUPSUCCESS;
 						
 				} else {
 			modelMap.put("status", "failure");

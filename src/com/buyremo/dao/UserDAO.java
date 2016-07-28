@@ -3,6 +3,7 @@ package com.buyremo.dao;
 import java.util.List;
 import java.util.Set;
 
+import com.buyremo.model.AnonymousAspiration;
 import com.buyremo.model.Aspiration;
 import com.buyremo.model.Login;
 import com.buyremo.model.User;
@@ -73,5 +74,7 @@ public interface UserDAO {
 	User validateUser(long userId);
 
 	List<Aspiration> getCartItems(long userId);
+
+	public List<AnonymousAspiration> getAnonymousAspirations(long userId);
 
 }

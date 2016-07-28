@@ -47,6 +47,8 @@ public class Aspiration {
 	private String aspirationCount;
 	
 	private String cartCount;
+	
+	private String aspirationType;
 
 	/**
 	 * @return the message
@@ -374,6 +376,20 @@ public class Aspiration {
 	 */
 	public void setCartCount(String cartCount) {
 		this.cartCount = cartCount;
+	}
+
+	/**
+	 * @return the aspirationType
+	 */
+	public String getAspirationType() {
+		return aspirationType;
+	}
+
+	/**
+	 * @param aspirationType the aspirationType to set
+	 */
+	public void setAspirationType(String aspirationType) {
+		this.aspirationType = aspirationType;
 	}
 
 }

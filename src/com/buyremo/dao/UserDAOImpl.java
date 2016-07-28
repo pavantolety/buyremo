@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.buyremo.enums.UserStatus;
+import com.buyremo.model.AnonymousAspiration;
 import com.buyremo.model.Aspiration;
 import com.buyremo.model.Login;
 import com.buyremo.model.User;
@@ -88,7 +89,7 @@ public class UserDAOImpl implements  UserDAO {
 		public static final String VALIDATE_DEPENDANT_REQUEST = "SELECT DEPDT_ID,DEPDT_EMAIL,DEPDT_PASS,DEPDT_NAME,DEPDT_MOBILE,DEPDT_HNO,DEPDT_ADDRESSL1,DEPDT_ADDRESSL2,DEPDT_ZIP,DEPDT_STATUS,DEPDT_ON,USER_TYPE FROM DEPENDANTS WHERE DEPDT_ID=?";
 		
 		//Validate user Details while login
-		public static final String GET_ASPIRATIONS = "SELECT A.ASPIRATION_ID,A.USER_ID,A.ASP_ID,A.ASP_EMAIL,A.PROD_ID,A.PROD_NAME,A.PROD_DESC,A.PROD_PRICE,A.PROD_CATG,A.PROD_CATG_ID,A.PROD_GAL_URL,A.PROD_VIEW_URL,A.PROD_CURR_ID,A.PROD_STATUS,A.DATE_CREATED,A.DATE_UPDATED,A.ASP_MESSAGE, (SELECT D.DEPDT_NAME FROM DEPENDANTS D WHERE DEPDT_ID = A.ASP_ID) AS DEPDT_NAME FROM ASPIRATIONS A WHERE USER_ID=? AND PROD_STATUS='ACTIVE'";
+		public static final String GET_ASPIRATIONS = "SELECT A.ASPIRATION_ID,A.USER_ID,A.ASP_ID,A.ASP_EMAIL,A.PROD_ID,A.PROD_NAME,A.PROD_DESC,A.PROD_PRICE,A.PROD_CATG,A.PROD_CATG_ID,A.PROD_GAL_URL,A.PROD_VIEW_URL,A.PROD_CURR_ID,A.PROD_STATUS,A.DATE_CREATED,A.DATE_UPDATED,A.ASP_MESSAGE, (SELECT D.DEPDT_NAME FROM DEPENDANTS D WHERE DEPDT_ID = A.ASP_ID) AS DEPDT_NAME FROM ASPIRATIONS A WHERE USER_ID=?";
 		
 		//Validate user Details while login
 		public static final String GET_ASPIRATIONS_BY_ID = "SELECT USER_ID,ASP_ID,ASP_EMAIL,PROD_ID,PROD_NAME,PROD_DESC,PROD_PRICE,PROD_CATG,PROD_CATG_ID,PROD_GAL_URL,PROD_VIEW_URL,PROD_CURR_ID,PROD_STATUS,DATE_CREATED,DATE_UPDATED,ASP_MESSAGE FROM ASPIRATIONS WHERE ASPIRATION_ID=?";
@@ -99,6 +100,9 @@ public class UserDAOImpl implements  UserDAO {
 		//Validate user Details while login
 		public static final String GET_DEPDT_ASPIRATIONS = "SELECT A.ASPIRATION_ID,A.USER_ID,A.ASP_ID,A.ASP_EMAIL,A.PROD_ID,A.PROD_NAME,A.PROD_DESC,A.PROD_PRICE,A.PROD_CATG,A.PROD_CATG_ID,A.PROD_GAL_URL,A.PROD_VIEW_URL,A.PROD_CURR_ID,A.PROD_STATUS,A.DATE_CREATED,A.DATE_UPDATED,A.ASP_MESSAGE, (SELECT U.USER_NAME FROM USERS U WHERE ID = A.USER_ID) AS USER_NAME FROM ASPIRATIONS A WHERE ASP_ID=?";
 	
+		//
+		public static final String GET_ANONYMOUS_ASPIRATIONS = "SELECT USER_ID,ASPRNT_ID,ASPRNT_EMAIL,ASPRNT_NAME,ASPRNT_MOBILE,ASPRNT_HNO,ASPRNT_ADDRESSL1,ASPRNT_ADDRESSL2,ASPRNT_ZIP,PROD_ID,PROD_NAME,PROD_DESC,PROD_PRICE,PROD_CATG,PROD_CATG_ID,PROD_GAL_URL,PROD_VIEW_URL,PROD_CURR_ID,PROD_STATUS,DATE_CREATED,DATE_UPDATED,ASP_MESSAGE FROM ANONYMOUS_ASPIRATIONS WHERE USER_ID=?";
+		
 		private JdbcTemplate jdbcTemplate;
 
 		@Autowired
@@ -570,7 +574,11 @@ public class UserDAOImpl implements  UserDAO {
 				if (sqlObjectsList.size() != 0) {
 					aspirations = new ArrayList<Aspiration>();
 					for (Map<String, Object> map : sqlObjectsList) {
-						aspirations.add(retrieveAspirations(map));
+						Aspiration aspiration = retrieveAspirations(map);
+						User user = getUser(aspiration.getUserId());
+						aspiration.setParentName(user.getUserName());
+						System.out.println(";;;;"+aspiration.getParentName());
+						aspirations.add(aspiration);
 					}
 				}			
 				
@@ -654,5 +662,100 @@ public class UserDAOImpl implements  UserDAO {
 			} else {
 				return null;
 			}
+		}
+		
+		@Override
+		public List<AnonymousAspiration> getAnonymousAspirations(long userId) {
+			List<AnonymousAspiration> anonymousAspirations = null;
+			try{
+				List<Map<String, Object>> sqlObjectsList = this.jdbcTemplate.queryForList(GET_ANONYMOUS_ASPIRATIONS,userId);
+			
+				if (sqlObjectsList.size() != 0) {
+					anonymousAspirations = new ArrayList<AnonymousAspiration>();
+					for (Map<String, Object> map : sqlObjectsList) {
+						anonymousAspirations.add(retrieveAnonymousAspirations(map));
+					}
+				}			
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			return anonymousAspirations;
+		}
+		
+		private AnonymousAspiration retrieveAnonymousAspirations(Map<String, Object> map) {
+			
+			AnonymousAspiration anonymousAspiration = new  AnonymousAspiration();
+			
+			if(map.get("ASPIRATION_ID")!= null){
+				anonymousAspiration.setAspirationId(Long.parseLong(map.get("ASPIRATION_ID").toString()));
+			}
+			if(map.get("USER_ID")!= null){
+				anonymousAspiration.setUserId(Long.parseLong(map.get("USER_ID").toString()));
+			}
+			if(map.get("ASPRNT_ID")!= null){
+				anonymousAspiration.setAspirantId(Long.parseLong(map.get("ASPRNT_ID").toString()));
+			}
+			if(map.get("ASPRNT_NAME")!=null){
+				anonymousAspiration.setAspirantName(map.get("ASPRNT_NAME").toString());
+			}
+			if(map.get("ASPRNT_EMAIL")!=null){
+				anonymousAspiration.setAspirantEmail(map.get("ASPRNT_EMAIL").toString());
+			}
+			if(map.get("ASPRNT_MOBILE")!=null) {
+				anonymousAspiration.setMobileNumber(map.get("ASPRNT_MOBILE").toString());
+			}
+			if(map.get("ASPRNT_HNO")!=null){
+				anonymousAspiration.setHno(map.get("ASPRNT_HNO").toString());
+			}
+			if(map.get("ASPRNT_ADDRESSL1")!=null){
+				anonymousAspiration.setAddressLine1(map.get("ASPRNT_ADDRESSL1").toString());
+			}
+			if(map.get("ASPRNT_ADDRESSL2")!=null){
+				anonymousAspiration.setAddressLine2(map.get("ASPRNT_ADDRESSL2").toString());
+			}
+			if(map.get("ASPRNT_ZIP")!=null){
+				anonymousAspiration.setZip(map.get("ASPRNT_ZIP").toString());
+			}
+			if(map.get("PROD_ID")!=null){
+				anonymousAspiration.setProductId(map.get("PROD_ID").toString());
+			}
+			if(map.get("PROD_NAME")!=null){
+				anonymousAspiration.setProductName(map.get("PROD_NAME").toString());
+			}
+			if(map.get("PROD_DESC")!=null) {
+				anonymousAspiration.setProductDesc(map.get("PROD_DESC").toString());
+			}
+			if(map.get("PROD_PRICE")!=null) {
+				anonymousAspiration.setProductPrice(Float.parseFloat(map.get("PROD_PRICE").toString()));
+			}
+			if(map.get("PROD_CATG")!=null){
+				anonymousAspiration.setCategoryName(map.get("PROD_CATG").toString());
+			}
+			if(map.get("PROD_CATG_ID")!=null){
+				anonymousAspiration.setCategoryId(map.get("PROD_CATG_ID").toString());
+			}
+			if(map.get("PROD_GAL_URL")!=null){
+				anonymousAspiration.setGalleryUrl(map.get("PROD_GAL_URL").toString());
+			}
+			if(map.get("PROD_VIEW_URL")!=null){
+				anonymousAspiration.setViewItemUrl(map.get("PROD_VIEW_URL").toString());
+			}
+			if(map.get("PROD_CURR_ID")!=null){
+				anonymousAspiration.setCurrencyId(map.get("PROD_CURR_ID").toString());
+			}
+			if(map.get("DATE_CREATED")!=null){
+				anonymousAspiration.setDateCreated((Date)map.get("DATE_CREATED"));
+			}
+			if(map.get("DATE_UPDATED")!=null){
+				anonymousAspiration.setDateUpdated((Date)map.get("DATE_UPDATED"));
+			}
+			if(map.get("ASP_MESSAGE")!=null){
+				anonymousAspiration.setMessage(map.get("ASP_MESSAGE").toString());
+			}
+			if(map.get("DEPDT_NAME")!= null){
+				anonymousAspiration.setAspirantName(map.get("DEPDT_NAME").toString());
+			}	
+			return anonymousAspiration;
 		}
 }

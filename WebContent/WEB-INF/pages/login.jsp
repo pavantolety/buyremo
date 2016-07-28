@@ -37,17 +37,17 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="logo pull-left">
-									<a href="/index"><img src="images/home/logo.png" alt="" /></a>
+									<a href="/buyremo/index"><img src="images/home/logo.png" alt="" /></a>
 								</div>
 							</div>
 							<div class="col-sm-8">
 								<div class="shop-menu pull-right">
 									<ul class="nav navbar-nav">
-										<li><a href="/login"><i class="fa fa-user"></i> Account</a></li>
-										<li><a href="/login"><i class="fa fa-star"></i> Aspirations</a></li>
-										<li><a href="/login"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-										<li><a href="/login"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-										<li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+										<li><a href="/buyremo/login"><i class="fa fa-user"></i> Account</a></li>
+										<li><a href="/buyremo/login"><i class="fa fa-star"></i> Aspirations</a></li>
+										<!-- <li><a href="/login"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+										<li><a href="/login"><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
+										<li><a href="/buyremo/login"><i class="fa fa-lock"></i> Login</a></li>
 									</ul>
 								</div>
 							</div>
@@ -61,27 +61,27 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="logo pull-left">
-								<a href="/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
+								<a href="/buyremo/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-sm-8">
 							<div class="shop-menu pull-right">
 								<c:if test='${userType eq "PARENT"}'>
 									<ul class="nav navbar-nav">
-										<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-										<li><a href="/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
-										<li><a href="/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
-										<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-										<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+										<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+										<li><a href="/buyremo/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
+										<%-- <li><a href="/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
+										<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li> --%>
+										<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 									</ul>
 								</c:if>
 								<c:if test='${userType eq "DEPENDANT"}'>
 									<ul class="nav navbar-nav">
-										<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-										<li><a href="/getMyAspirations"><i class="fa fa-star"></i>My Aspirations|(${depdtAspirationCount})</a></li>
+										<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+										<li><a href="/buyremo/getMyAspirations"><i class="fa fa-star"></i>My Aspirations|(${depdtAspirationCount})</a></li>
 										<!-- <li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a></li> -->
 										<!-- <li><a href="/userCheckout"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-										<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+										<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 									</ul>
 								</c:if>
 							</div>
@@ -106,7 +106,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<c:if test='${userType eq "PARENT"}'>
-									<li><a href="/userHome" class="active">Home</a></li>
+									<li><a href="/buyremo/userHome" class="active">Home</a></li>
 									<!-- <li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 	                                   <ul role="menu" class="sub-menu">
 	                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -118,10 +118,10 @@
 											<li><a href="#" id="books" name="books">Books</a></li> 
 	                                    </ul>
 	                                </li> -->
-									<li><a href="/inviteDependants">Invite Dependants</a></li>
+									<li><a href="/buyremo/inviteDependants">Invite Dependants</a></li>
                                 </c:if>
                                 <c:if test='${userType eq "DEPENDANT"}'>
-                                	<li><a href="/userHome" class="active">Home</a></li>
+                                	<li><a href="/buyremo/userHome" class="active">Home</a></li>
 									<li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 	                                   <ul role="menu" class="sub-menu">
 	                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -134,10 +134,33 @@
 	                                    </ul>
 	                                </li>
                                 </c:if>                               
+								<c:if test='${empty sessionScope.userSession}'> 
+                                	<li><a href="/buyremo/index" class="active">Home</a></li>
+									<li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
+	                                   <ul role="menu" class="sub-menu">
+	                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
+											<li><a href="#" id="electronics" name="electronics">Electronics</a></li> 
+											<li><a href="#" id="mobiles" name="mobiles">Mobiles</a></li> 
+											<li><a href="#" id="games" name="games">Games</a></li> 
+											<li><a href="#" id="toys" name="toys">Toys</a></li> 
+											<li><a href="#" id="tickets" name="tickets">Tickets</a></li> 
+											<li><a href="#" id="books" name="books">Books</a></li> 
+	                                    </ul>
+	                                </li>
+	                                <li><a href="/buyremo/inviteDependants">Invite Dependants</a></li>
+                                </c:if>                            
 							</ul>
 						</div>
 					</div>
 					<c:if test='${userType eq "DEPENDANT"}'>
+						<div class="col-sm-4">
+							<div class="search_box pull-right">
+								<input type="text" name="searchItem" id="searchItem" placeholder="Search" required="required"/>
+								<button type="submit" class="btn btn-warning" name="searchButton" id="searchButton">Go</button>
+							</div>						
+						</div>
+					</c:if>
+					<c:if test='${empty sessionScope.userSession}'>
 						<div class="col-sm-4">
 							<div class="search_box pull-right">
 								<input type="text" name="searchItem" id="searchItem" placeholder="Search" required="required"/>
@@ -156,7 +179,7 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="/loginSubmit" method="POST">
+						<form action="/buyremo/loginSubmit" method="POST">
 							<input type="email" name="loginId" id="loginId" value="" placeholder="Type Email Address" required="required"/>
 							<input type="password" name="loginPassword" id="loginPassword" placeholder="Password" onKeypress="capLock(event)" required="required"/>
 							<h5><font color="red">${message}</font></h5>
@@ -178,7 +201,7 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form method="POST" action="/signUpSubmit">
+						<form method="POST" action="/buyremo/signUpSubmit">
 							<input type="text" name="userName" id="userName" placeholder="Name" required="required"/>
 							<input type="email" name="emailId" id="emailId" placeholder="Email Address" required="required"/>
 							<input type="password" name="password" id="password" placeholder="Password" onKeypress="capLock(event)" required="required"/>

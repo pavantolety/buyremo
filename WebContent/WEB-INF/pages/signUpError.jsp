@@ -6,16 +6,14 @@
 	<tiles:putAttribute name="body">
 	<div class="container text-center">
 		<div class="logo-404">
-			<a href="/index"><img src="images/home/logo.png" alt="" /></a>
+			<a href="/buyremo/index"><img src="images/home/logo.png" alt="" /></a>
 		</div>
 		<div class="content-404">
 			<h1><b>Oops!</b> There's an Error while Sign Up Process!</h1>
-			<h2><a href="/login">Return to Sign Up page..</a></h2>
+			<h2><a href="/buyremo/login">Return to Sign Up page..</a></h2>
 		</div>
 	</div>
 	
-	
-</footer><!--/Footer-->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.scrollUp.min.js"></script>

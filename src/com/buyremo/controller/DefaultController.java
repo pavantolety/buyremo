@@ -56,18 +56,16 @@ public class DefaultController {
 			return PageView.SIGNIN;
 		}else{
 			User user = userDAO.validateUser(userSession.getUserId());
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(userSession.getUserId());
 			Aspiration depdtAspirationCount = aspirationDAO.getDepdtAspirationCount(userSession.getUserId());
 			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
 			System.out.println(cartCount);
-			System.out.println(aspirationCount);
-			if(aspirationCount.getCartCount() == "0" || cartCount.getCartCount() == "0" || depdtAspirationCount.getAspirationCount() == "0"){
+			if(userSession.getAspirationCount() == 0 || cartCount.getCartCount() == "0" || depdtAspirationCount.getAspirationCount() == "0"){
 				modelMap.put("aspirationCount","0");
 				modelMap.put("depdtAspirationCount","0");
 				modelMap.put("cartCount","0");
 			}
 			modelMap.put("depdtAspirationCount",depdtAspirationCount.getAspirationCount());
-			modelMap.put("aspirationCount",aspirationCount.getAspirationCount());
+			modelMap.put("aspirationCount",userSession.getAspirationCount());
 			modelMap.put("cartCount",cartCount.getCartCount());
 			modelMap.put("userType", user.getUserType());
 			modelMap.put("error","Please Login to Continue");
@@ -99,25 +97,6 @@ public class DefaultController {
 		}
 	}
 	
-	/*@RequestMapping(value = {"/checkout" })
-	public String userCheckout(ModelMap modelMap, Login login,HttpSession session) {
-		UserSession userSession = (UserSession) session.getAttribute("userSession");
-		if(userSession==null) {
-			return PageView.SIGNIN;
-		}else{
-			User user = userDAO.getDependantUser(userSession.getUserId());
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(userSession.getUserId());
-			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
-			System.out.println(cartCount);
-			System.out.println(aspirationCount);
-			modelMap.put("aspirationCount",aspirationCount.getCartCount());
-			modelMap.put("cartCount",cartCount.getCartCount());
-			modelMap.put("userType", user.getUserType());
-			modelMap.put("error","Please Login to Continue");
-		return PageView.CHECKOUT;
-		}
-	}	*/
-	
 	@RequestMapping(value = {"/inviteDependants" })
 	public String inviteDependants(ModelMap modelMap, Login login,HttpSession session) {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
@@ -125,16 +104,7 @@ public class DefaultController {
 			return PageView.SIGNIN;
 		}else{
 			User user = userDAO.getUser(userSession.getUserId());
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(userSession.getUserId());
-			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
-			System.out.println(cartCount);
-			System.out.println(aspirationCount);
-			if(aspirationCount.getAspirationCount() == "0" || cartCount.getCartCount() == "0"){
-				modelMap.put("aspirationCount","0");
-				modelMap.put("cartCount","0");
-			}
-			modelMap.put("aspirationCount",aspirationCount.getAspirationCount());
-			modelMap.put("cartCount",cartCount.getCartCount());
+			modelMap.put("aspirationCount",userSession.getAspirationCount());
 			modelMap.put("userType", user.getUserType());
 			modelMap.put("error","Please Login to Continue");
 		return PageView.INVITEDEPENDANTS;
@@ -149,16 +119,13 @@ public class DefaultController {
 			return PageView.ADDASPIRATION;
 		}else{
 			User user = userDAO.getDependantUser(userSession.getUserId());
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(userSession.getUserId());
-			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
-			System.out.println(cartCount);
-			System.out.println(aspirationCount);
-			if(aspirationCount.getCartCount() == "0" || cartCount.getCartCount() == "0"){
-				modelMap.put("aspirationCount","0");
+			Aspiration dependantAspCount = aspirationDAO.getDepdtAspirationCount(userSession.getUserId());
+			System.out.println(dependantAspCount);
+			if(dependantAspCount.getCartCount() == "0"){
+				modelMap.put("dependantAspCount","0");
 				modelMap.put("cartCount","0");
 			}
-			modelMap.put("aspirationCount",aspirationCount.getCartCount());
-			modelMap.put("cartCount",cartCount.getCartCount());
+			modelMap.put("dependantAspCount",dependantAspCount.getAspirationCount());
 			modelMap.put("userType", user.getUserType());
 			modelMap.put("error","Please Login to Continue");
 		return PageView.ADDASPIRATION;

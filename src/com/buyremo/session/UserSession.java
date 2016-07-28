@@ -13,6 +13,8 @@ public class UserSession implements Serializable {
 	private String emailId;
 	
 	private String password;
+	
+	private int aspirationCount;
 
 	public String getPassword() {
 		return password;
@@ -60,6 +62,20 @@ public class UserSession implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the aspirationCount
+	 */
+	public int getAspirationCount() {
+		return aspirationCount;
+	}
+
+	/**
+	 * @param aspirationCount the aspirationCount to set
+	 */
+	public void setAspirationCount(int aspirationCount) {
+		this.aspirationCount = aspirationCount;
 	}
 
 	/*public String getFBtoken() {

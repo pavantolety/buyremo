@@ -2,13 +2,13 @@ package com.buyremo.config;
 
 public interface SystemParams {
 
-	public static final String BASEURL = "http://localhost:8080/";
+	//public static final String BASEURL = "http://localhost:8080/buyremo/";
+	
+	public static final String BASEURL = "http://ec2-52-24-36-161.us-west-2.compute.amazonaws.com/buyremo/";
 
-public static final String FROMADDRESS = "edvenswatech@gmail.com";
+	public static final String FROMADDRESS = "edvenswatech@gmail.com";
 	
 	public static final String PASSWORD = "Edvenswa2015";
-	
-	//public static final String BCCADDRESS = "edvenswatech@gmail.com";
 	
 	public static final String TEMPLATES_PATH = "com/buyremo/mail/templates/";
     

@@ -21,14 +21,20 @@
 	<task:annotation-driven executor="asyncExecutor"/>
     <task:executor id="asyncExecutor" pool-size="5" />
 		
-	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/buyremodb"/>
         <property name="username" value="root"/>
         <property name="password" value="welcome"/>
-    </bean>
+    </bean> -->
 	
-	
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://52.36.250.121:3306/buyremodb" />
+		<property name="username" value="root" />
+		<property name="password" value="Edvenswa2016" />
+	</bean>
+ 	
 	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl"/>
 
 	<bean

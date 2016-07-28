@@ -45,26 +45,19 @@ public class AuthenticationController {
 		}
 		String userType = null;
 		if(login != null){
-			User user = userDAO.validateUser(login);	
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(user.getId());
-			Aspiration depdtAspirationCount = aspirationDAO.getDepdtAspirationCount(user.getId());
-			Aspiration cartCount = aspirationDAO.getCartItemsCount(user.getId());
-			System.out.println(cartCount.getCartCount());
-			System.out.println(aspirationCount.getAspirationCount());
-			if(aspirationCount.getCartCount() == "0" || cartCount.getCartCount() == "0" || depdtAspirationCount.getAspirationCount() == "0"){
-				modelMap.put("aspirationCount","0");
-				modelMap.put("cartCount","0");
-				modelMap.put("depdtAspirationCount","0");
-			}
-			modelMap.put("aspirationCount",aspirationCount.getAspirationCount());
-			modelMap.put("cartCount",cartCount.getCartCount());
-			modelMap.put("depdtAspirationCount",depdtAspirationCount.getAspirationCount());
+			User user = userDAO.validateUser(login);			
+			
 			if(user != null && user.getUserType().trim().equals("DEPENDANT")){		
 				UserSession userSession = AuthenticationHelper.populateUserSession(login, user);
 				 session.setAttribute("userSession", userSession);
 				 aspirationController.getDependantAspirations(modelMap,session);
+				 Aspiration depdtAspirationCount = aspirationDAO.getDepdtAspirationCount(user.getId());
+				 if(depdtAspirationCount.getAspirationCount() == "0"){
+					 modelMap.put("depdtAspirationCount","0");
+				 }
 				 userType = user.getUserType();
 				 modelMap.put("userType", userType);
+				 modelMap.put("depdtAspirationCount",depdtAspirationCount.getAspirationCount());
 				 return PageView.USERHOME;
 			}else if(user != null && user.getUserType().trim().equals("PARENT")){		
 				UserSession userSession = AuthenticationHelper.populateUserSession(login, user);

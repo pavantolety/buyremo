@@ -37,17 +37,17 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="logo pull-left">
-									<a href="/index"><img src="images/home/logo.png" alt="" /></a>
+									<a href="/buyremo/index"><img src="images/home/logo.png" alt="" /></a>
 								</div>
 							</div>
 							<div class="col-sm-8">
 								<div class="shop-menu pull-right">
 									<ul class="nav navbar-nav">
-										<li><a href="/login"><i class="fa fa-user"></i> Account</a></li>
-										<li><a href="/login"><i class="fa fa-star"></i> Aspirations</a></li>
-										<li><a href="/login"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-										<li><a href="/login"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-										<li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+										<li><a href="/buyremo/login"><i class="fa fa-user"></i> Account</a></li>
+										<li><a href="/buyremo/login"><i class="fa fa-star"></i> Aspirations</a></li>
+										<!-- <li><a href="/login"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+										<li><a href="/login"><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
+										<li><a href="/buyremo/login"><i class="fa fa-lock"></i> Login</a></li>
 									</ul>
 								</div>
 							</div>
@@ -62,27 +62,27 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="logo pull-left">
-									<a href="/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
+									<a href="/buyremo/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
 								</div>
 							</div>
 							<div class="col-sm-8">
 								<div class="shop-menu pull-right">
 									<c:if test='${userType eq "PARENT"}'>
 										<ul class="nav navbar-nav">
-											<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-											<li><a href="/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
-											<li><a href="/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
-											<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-											<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+											<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+											<li><a href="/buyremo/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
+											<li><a href="/buyremo/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
+											<li><a href="/buyremo/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+											<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 										</ul>
 									</c:if>
 									<c:if test='${userType eq "DEPENDANT"}'>
 										<ul class="nav navbar-nav">
-											<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-											<li><a href="/getMyAspirations"><i class="fa fa-star"></i>My Aspirations|(${depdtAspirationCount})</a></li>
+											<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+											<li><a href="/buyremo/getMyAspirations"><i class="fa fa-star"></i>My Aspirations (${dependantAspCount})</a></li>
 											<!-- <li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a></li> -->
 											<!-- <li><a href="/userCheckout"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-											<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+											<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 										</ul>
 									</c:if>
 								</div>
@@ -107,7 +107,7 @@
 							<div class="mainmenu pull-left">
 								<ul class="nav navbar-nav collapse navbar-collapse">
 									<c:if test='${userType eq "PARENT"}'>
-										<li><a href="/userHome" class="active">Home</a></li>
+										<li><a href="/buyremo/userHome" class="active">Home</a></li>
 										<!-- <li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 		                                   <ul role="menu" class="sub-menu">
 		                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -122,7 +122,7 @@
 										<li><a href="/inviteDependants">Invite Dependants</a></li>
 	                                </c:if>
 	                                <c:if test='${userType eq "DEPENDANT"}'>
-	                                	<li><a href="/userHome" class="active">Home</a></li>
+	                                	<li><a href="/buyremo/userHome" class="active">Home</a></li>
 										<li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 		                                   <ul role="menu" class="sub-menu">
 		                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -136,7 +136,7 @@
 		                                </li>
 	                                </c:if>                               
 									<c:if test='${empty sessionScope.userSession}'> 
-	                                	<li><a href="/index" class="active">Home</a></li>
+	                                	<li><a href="/buyremo/index" class="active">Home</a></li>
 										<li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 		                                   <ul role="menu" class="sub-menu">
 		                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -148,6 +148,7 @@
 												<li><a href="#" id="books" name="books">Books</a></li> 
 		                                    </ul>
 		                                </li>
+		                                <li><a href="/buyremo/inviteDependants">Invite Dependants</a></li>
 	                                </c:if>                            
 								</ul>
 							</div>
@@ -211,6 +212,7 @@
 												<input type="text" placeholder="Email*"  id="aspirantEmail" class="form-control"><br>
 												<input type="text" placeholder="Title"  id="title" class="form-control"><br>
 												<input type="text" placeholder="Telephone/Mobile*"  id="mobileNumber" class="form-control"><br>
+												<input type="text" placeholder="House Number*"  id="hno" class="form-control"><br>
 												<input type="text" placeholder="Address 1 *" id="addressLine1" class="form-control"><br>
 												<input type="text" placeholder="Address 2"  id="addressLine2" class="form-control"><br>
 												<input type="text" placeholder="Zip" id="zip" class="form-control"><br>
@@ -291,13 +293,14 @@
 		}
 		$.ajax({            	  
 			type : "POST",
-			url : "/requestAspiration.json",
+			url : "/buyremo/requestAspiration.json",
 			data : setData,            
 			success : function(responseData) {
-				 if('success'== responseData.status){               
+				 /* if('success'== responseData.status){               
 				 }else{
 				 	 $("#notifications").notify("Email you entered is not a registered Buyremo Id.",{ position:"right top" });               
-				 }             	  
+				 }  */  
+				 sweetAlert("Success",responseData.message, "warning");          	  
 			}, error : function (data){
 			 // alert(JSON.stringify(data));                	  
 			}
@@ -322,19 +325,21 @@
 			aspirantName :  $("#aspirantName").val(),
 			aspirantEmail :  $("#aspirantEmail").val(),
 			mobileNumber :  $("#mobileNumber").val(),
+			hno :  $("#hno").val(),
 			addressLine1 :  $("#addressLine1").val(),
 			addressLine2 :  $("#addressLine2").val(),
 			zip :  $("#zip").val()
 		}
 		$.ajax({            	  
 			type : "POST",
-			url : "/requestAnonymousAspiration.json",
+			url : "/buyremo/requestAnonymousAspiration.json",
 			data : setData,            
 			success : function(responseData) {
-				 if('success'== responseData.status){               
+			sweetAlert("Success",responseData.message, "warning");  
+				 /* if('success'== responseData.status){               
 				 }else{
 				 	 $("#notifications").notify("Email you entered is not a registered Buyremo Id.",{ position:"right top" });               
-				 }             	  
+				 }    */          	  
 			}, error : function (data){
 			 // alert(JSON.stringify(data));                	  
 			}

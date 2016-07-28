@@ -112,33 +112,48 @@ public class AspirationController {
 		}
 		try{			
 			List<Aspiration> aspiration = userDAO.getAspirations(userSession.getUserId());	
-			//get annonymus aspirations by email
-			/*aspiration2
-			 * 
-			 * if (asp2 != null) {
-			 * asp2.iterator
-			 * iter.hasNext() {
-			 * aspiration.add(iter.next)
-			 */
-			Aspiration aspirationCount = aspirationDAO.getAspirationCount(userSession.getUserId());//aspiration.size();
+			List<AnonymousAspiration> aspiration2 = userDAO.getAnonymousAspirations(userSession.getUserId());
+			System.out.println("Asp" + aspiration2);
+			User user = userDAO.getUser(userSession.getUserId());
+			if(aspiration2 != null){
+				System.out.println("Anonymous" + aspiration2);
+				Iterator<AnonymousAspiration> itr = aspiration2.iterator();
+				while(itr.hasNext()){
+					AnonymousAspiration anonymousAspiration = itr.next();
+					Aspiration aspirationObj = new Aspiration();
+					aspirationObj.setAspirantId(anonymousAspiration.getAspirantId());	
+					aspirationObj.setAspirantEmail(anonymousAspiration.getAspirantEmail());
+					aspirationObj.setAspirantName(anonymousAspiration.getAspirantName());
+					aspirationObj.setProductId(anonymousAspiration.getProductId());
+					aspirationObj.setProductName(anonymousAspiration.getProductName());
+					aspirationObj.setProductDesc(anonymousAspiration.getProductDesc());
+					aspirationObj.setProductPrice(anonymousAspiration.getProductPrice());
+					aspirationObj.setCategoryId(anonymousAspiration.getCategoryId());
+					aspirationObj.setCategoryName(anonymousAspiration.getCategoryName());
+					aspirationObj.setGalleryUrl(anonymousAspiration.getGalleryUrl());
+					aspirationObj.setViewItemUrl(anonymousAspiration.getViewItemUrl());
+					aspirationObj.setCurrencyId(anonymousAspiration.getCurrencyId());
+					aspirationObj.setMessage(anonymousAspiration.getMessage());
+					aspirationObj.setAspirationType("ANONYMOUS");
+					aspiration.add(aspirationObj);
+				}
+			}
 			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
 			System.out.println(cartCount.getCartCount());
-			System.out.println(aspirationCount.getAspirationCount());
-			if(aspirationCount.getCartCount() == "0" || cartCount.getCartCount() == "0"){
-				modelMap.put("aspirationCount","0");
+			if(cartCount.getCartCount() == "0"){
 				modelMap.put("cartCount","0");
 			}
-			modelMap.put("aspirationCount",aspirationCount.getAspirationCount());
+			if(aspiration.size() == 0){
+				modelMap.put("aspirationCount","0");
+			}
+			modelMap.put("aspirationCount",aspiration.size());
 			modelMap.put("cartCount",cartCount.getCartCount());
-			if(aspiration == null){
-				modelMap.put("status","success");
-				modelMap.put("message", "Couldnt find any aspirations at this time.");
-				
-			}else{
+			userSession.setAspirationCount(aspiration.size());
+			if(aspiration != null){
 				modelMap.put("aspirationsList",aspiration);
 			}
-			User user = userDAO.getUser(userSession.getUserId());
 			modelMap.put("userType", user.getUserType());
+			System.out.println("asprt" + aspiration);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -154,7 +169,7 @@ public class AspirationController {
 		try{	
 			System.out.println(userSession.getUserId());
 			List<Aspiration> aspiration = userDAO.getDependantAspirations(userSession.getUserId());	
-			System.out.println(aspiration);
+			System.out.println("Request" + aspiration.get(0).getUserId());
 			Aspiration cartCount = aspirationDAO.getCartItemsCount(userSession.getUserId());
 			Aspiration depdtAspirationCount = aspirationDAO.getDepdtAspirationCount(userSession.getUserId());
 			System.out.println(cartCount.getCartCount());
@@ -165,11 +180,7 @@ public class AspirationController {
 			}
 			modelMap.put("depdtAspirationCount",depdtAspirationCount.getAspirationCount());
 			modelMap.put("cartCount",cartCount.getCartCount());
-			if(aspiration == null){
-				modelMap.put("status","success");
-				modelMap.put("message", "Seems your aspirations are empty!");
-				
-			}else{
+			if(aspiration != null){
 				modelMap.put("aspirationsList",aspiration);
 			}
 			User user = userDAO.getDependantUser(userSession.getUserId());

@@ -37,16 +37,16 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="logo pull-left">
-								<a href="/index"><img src="images/home/logo.png" alt="" /></a>
+								<a href="/buyremo/index"><img src="images/home/logo.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-sm-8">
 							<div class="shop-menu pull-right">
 								<ul class="nav navbar-nav">
-									<li><a href="/index"><i class="fa fa-user"></i> Account</a></li>
-									<li><a href="/login"><i class="fa fa-star"></i> Aspirations</a></li>
-									<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-									<li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+									<li><a href="/buyremo/index"><i class="fa fa-user"></i> Account</a></li>
+									<li><a href="/buyremo/login"><i class="fa fa-star"></i> Aspirations</a></li>
+									<!-- <li><a href="/buyremo/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+									<li><a href="/buyremo/cart" class="active"><i class="fa fa-shopping-cart"></i> Cart</a></li> -->
 									<li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
 								</ul>
 							</div>
@@ -61,7 +61,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="logo pull-left">
-								<a href="/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
+								<a href="/buyremo/userHome" class="active"><img src="images/home/logo.png" alt="" /></a>
 								<input type="hidden" value="${userType}">
 							</div>
 						</div>
@@ -69,20 +69,20 @@
 							<div class="shop-menu pull-right">
 								<c:if test='${userType eq "PARENT"}'>
 									<ul class="nav navbar-nav">
-										<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-										<li><a href="/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
-										<li><a href="/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
-										<li><a href="/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-										<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+										<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+										<li><a href="/buyremo/getAspirations"><i class="fa fa-star"></i>Aspirations  (${aspirationCount})</a></li>
+										<li><a href="/buyremo/cart"  class="active"><i class="fa fa-shopping-cart"></i>My Cart  (${cartCount})</a></li>
+										<li><a href="/buyremo/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+										<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 									</ul>
 								</c:if>
 								<c:if test='${userType eq "DEPENDANT"}'>
 									<ul class="nav navbar-nav">
-										<li><a href="/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
-										<li><a href="/getMyAspirations"><i class="fa fa-star"></i>My Aspirations|(${depdtAspirationCount})</a></li>
+										<li><a href="/buyremo/userHome" class="active"><i class="fa fa-user"></i><c:out value="${sessionScope.userSession.userName}" /></a></li>
+										<li><a href="/buyremo/getMyAspirations"><i class="fa fa-star"></i>My Aspirations|(${depdtAspirationCount})</a></li>
 										<!-- <li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a></li> -->
 										<!-- <li><a href="/userCheckout"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-										<li><a href="/logout"><i class="fa fa-lock"></i>Logout</a></li>
+										<li><a href="/buyremo/logout"><i class="fa fa-lock"></i>Logout</a></li>
 									</ul>
 								</c:if>
 							</div>
@@ -107,7 +107,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<c:if test='${userType eq "PARENT"}'>
-									<li><a href="/userHome" class="active">Home</a></li>
+									<li><a href="/buyremo/userHome" class="active">Home</a></li>
 									<!-- <li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 	                                   <ul role="menu" class="sub-menu">
 	                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -122,7 +122,7 @@
 									<li><a href="/inviteDependants">Invite Dependants</a></li>
                                 </c:if>
                                 <c:if test='${userType eq "DEPENDANT"}'>
-                                	<li><a href="/userHome" class="active">Home</a></li>
+                                	<li><a href="/buyremo/userHome" class="active">Home</a></li>
 									<li class="dropdown"><a href="#">Shop Categories<i class="fa fa-angle-down"></i></a>
 	                                   <ul role="menu" class="sub-menu">
 	                                        <li><a href="#" id="fashion" name="fashion">Fashion</a></li>
@@ -254,7 +254,7 @@
 	function removeItemFromCart(id){
 		$.ajax({            	  
 			type : "POST",
-			url : "/removeCartItem/"+id+".json",
+			url : "/buyremo/removeCartItem/"+id+".json",
 			dataType : "json",            
 			success : function(data) {
 			  //alert(JSON.stringify(data));
@@ -269,7 +269,7 @@
 	function moveItemFromCart(id){
 		$.ajax({            	  
 			type : "POST",
-			url : "/moveToAspirations/"+id+".json",
+			url : "/buyremo/moveToAspirations/"+id+".json",
 			dataType : "json",            
 			success : function(data) {
 			  //alert(JSON.stringify(data));

@@ -51,6 +51,38 @@ public class AnonymousAspiration {
 	
 	private String cartCount;
 	
+	private String userName;
+
+	private String emailId;
+
+	private String password;
+
+	private String confirmPassword;
+
+	@Size(min = 5, max = 15)
+	@Pattern(regexp = "^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$")
+	private String mobileNumber;
+
+	private String addressLine1;
+	
+	private String addressLine2;
+
+	private String city;
+
+	private String state;
+
+	private String zip;
+
+	private String status;
+	
+	private String token;
+	
+	private String hno;
+	
+	private String userType;
+	
+	private long dependantId;
+	
 	/**
 	 * @return the aspirationId
 	 */
@@ -569,35 +601,4 @@ public class AnonymousAspiration {
 		this.dependantId = dependantId;
 	}
 
-	private String userName;
-
-	private String emailId;
-
-	private String password;
-
-	private String confirmPassword;
-
-	@Size(min = 5, max = 15)
-	@Pattern(regexp = "^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$")
-	private String mobileNumber;
-
-	private String addressLine1;
-	
-	private String addressLine2;
-
-	private String city;
-
-	private String state;
-
-	private String zip;
-
-	private String status;
-	
-	private String token;
-	
-	private String hno;
-	
-	private String userType;
-	
-	private long dependantId;
 }

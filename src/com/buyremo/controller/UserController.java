@@ -123,43 +123,6 @@ public class UserController {
 			return user.getUserType();
 		
 	}
-	
-	/*@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public String changePasswordSubmit(ModelMap modelMap,Users user,	BindingResult result,HttpSession session) {
-		UserSession userSession = (UserSession) session.getAttribute("userSession");
-		String pageView=PageView.CHANGEPASSWORD;
-		if(userSession != null) {
-		if(result.hasErrors()){
-			modelMap.put("errors",result.getAllErrors());
-			log.debug("There were errors!!!!!!!!!! >>>>>>>>>>>>>>>>>>>>>>>>>" + result.getErrorCount());
-			List<ObjectError> errorsList = result.getAllErrors();
-			for (ObjectError objError: errorsList) {
-				log.debug(objError.getDefaultMessage());
-			}
-		}else{
-			
-			Users userDTO = userDAO.getUserByEmail(userSession.getEmailAddress()).get(0);
-			if(null != userDTO){
-				userDTO.setPassword(user.getPassword());
-				
-				userDTO = userDAO.updateUserPassword(userDTO); 
-				MailHelper mailer = MailHelper.getInstance();
-				 try {
-					mailer.sendChangePasswordByEmail(userDTO.getEmailAddress(), userDTO.getName(), userDTO.getPassword());
-					modelMap.put("status","success");
-				    modelMap.put("message", "Your  account password has been changed successfully, Please check your mail ::" + userDTO.getEmailAddress());
-					 
-				} catch (Exception ex) {
-					// TODO Auto-generated catch block
-					ex.printStackTrace();
-				}
-			}
-		}
-		return "";
-	}else{
-			return PageView.SIGNIN;
-		}
-	}*/
 		 
 }
 

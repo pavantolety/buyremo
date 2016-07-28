@@ -13,7 +13,7 @@
 						<div class="video-gallery text-center">
 							<a href="#">
 								<div class="iframe-img">
-									<img src="../../../images/home/iframe1.png" alt="" />
+									<img src="images/home/iframe1.png" alt="" />
 								</div>
 								<div class="overlay-icon">
 									<i class="fa fa-play-circle-o"></i>
@@ -26,7 +26,7 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="address">
-						<img src="../../../images/home/map.png" alt="" />
+						<img src="images/home/map.png" alt="" />
 						<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 					</div>
 				</div>
@@ -110,14 +110,15 @@
 	</div>
 	
 </footer><!--/Footer-->
-<script src="../../../js/jquery.js"></script>
-<script src="../../../js/bootstrap.min.js"></script>
-<script src="../../../js/jquery.scrollUp.min.js"></script>
-<script src="../../../js/price-range.js"></script>
-<script src="../../../js/jquery.prettyPhoto.js"></script>
-<script src="../../../js/main.js"></script>
-<script src="../../../js/enscroll-0.6.0.min.js"></script>
-<script src="../../../js/notify.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/price-range.js"></script>
+<script src="js/jquery.prettyPhoto.js"></script>
+<script src="js/main.js"></script>
+<script src="js/enscroll-0.6.0.min.js"></script>
+<script src="js/notify.min.js"></script>
+<script src="js/sweet-alert.min.js"></script>
 <script>
 	$('#scrollbox').enscroll({
 	   showOnHover: false,
@@ -130,9 +131,9 @@
 		var searchKey = $("#searchItem").val();
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -140,9 +141,9 @@
 		var searchKey = 'fashion';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -150,9 +151,9 @@
 		var searchKey = 'electronics';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -160,9 +161,9 @@
 		var searchKey = 'games';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -170,9 +171,9 @@
 		var searchKey = 'toys';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -180,9 +181,9 @@
 		var searchKey = 'tickets';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -190,9 +191,9 @@
 		var searchKey = 'books';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -200,9 +201,9 @@
 		var searchKey = 'mobiles';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -210,9 +211,9 @@
 		var searchKey = 'kids';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -220,9 +221,9 @@
 		var searchKey = 'households';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -230,9 +231,9 @@
 		var searchKey = 'interiors';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -240,9 +241,9 @@
 		var searchKey = 'clothing';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -250,9 +251,9 @@
 		var searchKey = 'bags';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 	 
@@ -260,9 +261,9 @@
 		var searchKey = 'shoes';
 		localStorage.setItem("searchString", searchKey);
 		if(searchKey == null){			
-				window.location.href = '/index';			
+				window.location.href = '/buyremo/index';			
 		}else{
-			window.location.href = '/searchResults';
+			window.location.href = '/buyremo/searchResults';
 		}
 	 });
 </script>
